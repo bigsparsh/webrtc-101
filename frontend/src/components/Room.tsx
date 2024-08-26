@@ -34,7 +34,16 @@ const Room = ({
       const message = JSON.parse(data.data);
 
       if (message.type === "send-offer") {
-        const pc = new RTCPeerConnection();
+        const pc = new RTCPeerConnection({
+          iceServers: [
+            {
+              urls: [
+                "stun:stun.l.google.com:19302",
+                "stun:global.stun.twilio.com:3478",
+              ],
+            },
+          ],
+        });
         setLobby(false);
         setSendingPc(pc);
 
@@ -68,7 +77,16 @@ const Room = ({
           }
         };
       } else if (message.type === "createOffer") {
-        const pc = new RTCPeerConnection();
+        const pc = new RTCPeerConnection({
+          iceServers: [
+            {
+              urls: [
+                "stun:stun.l.google.com:19302",
+                "stun:global.stun.twilio.com:3478",
+              ],
+            },
+          ],
+        });
         setLobby(false);
         setReceivingPc(pc);
 
