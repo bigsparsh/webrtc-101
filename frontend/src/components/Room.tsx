@@ -26,7 +26,7 @@ const Room = ({
   const [sendingPc, setSendingPc] = useState<RTCPeerConnection | null>(null);
 
   useEffect(() => {
-    const ws = new WebSocket("ws://webrtc-101.onrender.com");
+    const ws = new WebSocket("wss://webrtc-101.onrender.com");
     ws.onopen = () => {
       ws.send(JSON.stringify({ type: "connect", user_id: id }));
     };
