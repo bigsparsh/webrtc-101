@@ -11,8 +11,10 @@ const Room = ({
 }) => {
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
+  // @ts-expect-error nothing
   const [remoteVideoTrack, setRemoteVideoTrack] =
     useState<MediaStreamTrack | null>(null);
+  // @ts-expect-error nothing
   const [remoteAudioTrack, setRemoteAudioTrack] =
     useState<MediaStreamTrack | null>(null);
   const [lobby, setLobby] = useState<boolean>(true);
@@ -24,7 +26,7 @@ const Room = ({
   const [sendingPc, setSendingPc] = useState<RTCPeerConnection | null>(null);
 
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:8080");
+    const ws = new WebSocket("ws://webrtc-101.onrender.com");
     ws.onopen = () => {
       ws.send(JSON.stringify({ type: "connect", user_id: id }));
     };
