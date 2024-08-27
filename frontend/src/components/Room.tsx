@@ -34,12 +34,15 @@ const Room = ({
       const message = JSON.parse(data.data);
 
       if (message.type === "send-offer") {
-        const response = await fetch(
-          "https://bigsparsh.metered.live/api/v1/turn/credentials?apiKey=3f697d91d0d1d3d6755f832dfa8947e183c9",
-        );
-        const iceServers = await response.json();
         const pc = new RTCPeerConnection({
-          iceServers,
+          iceServers: [
+            {
+              urls: [
+                "stun:stun.l.google.com:19302",
+                "stun:global.stun.twilio.com:3478",
+              ],
+            },
+          ],
         });
         setLobby(false);
         setSendingPc(pc);
@@ -74,12 +77,15 @@ const Room = ({
           }
         };
       } else if (message.type === "createOffer") {
-        const response = await fetch(
-          "https://bigsparsh.metered.live/api/v1/turn/credentials?apiKey=3f697d91d0d1d3d6755f832dfa8947e183c9",
-        );
-        const iceServers = await response.json();
         const pc = new RTCPeerConnection({
-          iceServers,
+          iceServers: [
+            {
+              urls: [
+                "stun:stun.l.google.com:19302",
+                "stun:global.stun.twilio.com:3478",
+              ],
+            },
+          ],
         });
         setLobby(false);
         setReceivingPc(pc);
