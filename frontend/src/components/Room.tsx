@@ -36,14 +36,26 @@ const Room = ({
       if (message.type === "send-offer") {
         const pc = new RTCPeerConnection({
           iceServers: [
+            { urls: "stun:stun.relay.metered.ca:80" },
             {
-              urls: [
-                "stun:stun.l.google.com:19302",
-                "stun:global.stun.twilio.com:3478",
-                "turn:openrelay.metered.ca:80",
-              ],
-              username: "openrelayproject",
-              credential: "openrelayproject",
+              urls: "turn:global.relay.metered.ca:80",
+              username: "aa60b6fa7128997c7d6c58e8",
+              credential: "1Q6X0UcWjKa36OfK",
+            },
+            {
+              urls: "turn:global.relay.metered.ca:80?transport=tcp",
+              username: "aa60b6fa7128997c7d6c58e8",
+              credential: "1Q6X0UcWjKa36OfK",
+            },
+            {
+              urls: "turn:global.relay.metered.ca:443",
+              username: "aa60b6fa7128997c7d6c58e8",
+              credential: "1Q6X0UcWjKa36OfK",
+            },
+            {
+              urls: "turns:global.relay.metered.ca:443?transport=tcp",
+              username: "aa60b6fa7128997c7d6c58e8",
+              credential: "1Q6X0UcWjKa36OfK",
             },
           ],
         });
@@ -82,14 +94,26 @@ const Room = ({
       } else if (message.type === "createOffer") {
         const pc = new RTCPeerConnection({
           iceServers: [
+            { urls: "stun:stun.relay.metered.ca:80" },
             {
-              urls: [
-                "stun:stun.l.google.com:19302",
-                "stun:global.stun.twilio.com:3478",
-                "turn:openrelay.metered.ca:80",
-              ],
-              username: "openrelayproject",
-              credential: "openrelayproject",
+              urls: "turn:global.relay.metered.ca:80",
+              username: "aa60b6fa7128997c7d6c58e8",
+              credential: "1Q6X0UcWjKa36OfK",
+            },
+            {
+              urls: "turn:global.relay.metered.ca:80?transport=tcp",
+              username: "aa60b6fa7128997c7d6c58e8",
+              credential: "1Q6X0UcWjKa36OfK",
+            },
+            {
+              urls: "turn:global.relay.metered.ca:443",
+              username: "aa60b6fa7128997c7d6c58e8",
+              credential: "1Q6X0UcWjKa36OfK",
+            },
+            {
+              urls: "turns:global.relay.metered.ca:443?transport=tcp",
+              username: "aa60b6fa7128997c7d6c58e8",
+              credential: "1Q6X0UcWjKa36OfK",
             },
           ],
         });
