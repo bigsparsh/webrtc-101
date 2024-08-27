@@ -40,10 +40,8 @@ const Room = ({
               urls: [
                 "stun:stun.l.google.com:19302",
                 "stun:global.stun.twilio.com:3478",
+                "turn:openrelay.metered.ca:80",
               ],
-            },
-            {
-              urls: "turn:openrelay.metered.ca:80",
               username: "openrelayproject",
               credential: "openrelayproject",
             },
