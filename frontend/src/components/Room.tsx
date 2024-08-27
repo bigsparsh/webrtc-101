@@ -34,30 +34,12 @@ const Room = ({
       const message = JSON.parse(data.data);
 
       if (message.type === "send-offer") {
+        const response = await fetch(
+          "https://bigsparsh.metered.live/api/v1/turn/credentials?apiKey=3f697d91d0d1d3d6755f832dfa8947e183c9",
+        );
+        const iceServers = await response.json();
         const pc = new RTCPeerConnection({
-          iceServers: [
-            { urls: "stun:stun.relay.metered.ca:80" },
-            {
-              urls: "turn:global.relay.metered.ca:80",
-              username: "aa60b6fa7128997c7d6c58e8",
-              credential: "1Q6X0UcWjKa36OfK",
-            },
-            {
-              urls: "turn:global.relay.metered.ca:80?transport=tcp",
-              username: "aa60b6fa7128997c7d6c58e8",
-              credential: "1Q6X0UcWjKa36OfK",
-            },
-            {
-              urls: "turn:global.relay.metered.ca:443",
-              username: "aa60b6fa7128997c7d6c58e8",
-              credential: "1Q6X0UcWjKa36OfK",
-            },
-            {
-              urls: "turns:global.relay.metered.ca:443?transport=tcp",
-              username: "aa60b6fa7128997c7d6c58e8",
-              credential: "1Q6X0UcWjKa36OfK",
-            },
-          ],
+          iceServers,
         });
         setLobby(false);
         setSendingPc(pc);
@@ -92,30 +74,12 @@ const Room = ({
           }
         };
       } else if (message.type === "createOffer") {
+        const response = await fetch(
+          "https://bigsparsh.metered.live/api/v1/turn/credentials?apiKey=3f697d91d0d1d3d6755f832dfa8947e183c9",
+        );
+        const iceServers = await response.json();
         const pc = new RTCPeerConnection({
-          iceServers: [
-            { urls: "stun:stun.relay.metered.ca:80" },
-            {
-              urls: "turn:global.relay.metered.ca:80",
-              username: "aa60b6fa7128997c7d6c58e8",
-              credential: "1Q6X0UcWjKa36OfK",
-            },
-            {
-              urls: "turn:global.relay.metered.ca:80?transport=tcp",
-              username: "aa60b6fa7128997c7d6c58e8",
-              credential: "1Q6X0UcWjKa36OfK",
-            },
-            {
-              urls: "turn:global.relay.metered.ca:443",
-              username: "aa60b6fa7128997c7d6c58e8",
-              credential: "1Q6X0UcWjKa36OfK",
-            },
-            {
-              urls: "turns:global.relay.metered.ca:443?transport=tcp",
-              username: "aa60b6fa7128997c7d6c58e8",
-              credential: "1Q6X0UcWjKa36OfK",
-            },
-          ],
+          iceServers,
         });
         setLobby(false);
         setReceivingPc(pc);
