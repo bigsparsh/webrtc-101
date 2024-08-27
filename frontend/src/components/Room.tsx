@@ -42,6 +42,11 @@ const Room = ({
                 "stun:global.stun.twilio.com:3478",
               ],
             },
+            {
+              urls: "turn:openrelay.metered.ca:80",
+              username: "openrelayproject",
+              credential: "openrelayproject",
+            },
           ],
         });
         setLobby(false);
