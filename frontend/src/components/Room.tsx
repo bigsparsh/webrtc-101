@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 
 const Room = ({
@@ -33,16 +34,22 @@ const Room = ({
     ws.onmessage = async (data) => {
       const message = JSON.parse(data.data);
 
+      const config = {
+        method: "put",
+        maxBodyLength: Infinity,
+        url: "https://bigsparsh:60dd4964-6522-11ef-8a32-0242ac150002@global.xirsys.net/_turn/MyFirstApp",
+        headers: {
+          "Content-type": "application/json",
+        },
+        data: JSON.stringify({
+          format: "urls",
+        }),
+      };
+
       if (message.type === "send-offer") {
+        const iceServers = await axios.request(config);
         const pc = new RTCPeerConnection({
-          iceServers: [
-            {
-              urls: [
-                "stun:stun.l.google.com:19302",
-                "stun:global.stun.twilio.com:3478",
-              ],
-            },
-          ],
+          iceServers: iceServers.data.v.iceServers,
         });
         setLobby(false);
         setSendingPc(pc);
@@ -77,15 +84,9 @@ const Room = ({
           }
         };
       } else if (message.type === "createOffer") {
+        const iceServers = await axios.request(config);
         const pc = new RTCPeerConnection({
-          iceServers: [
-            {
-              urls: [
-                "stun:stun.l.google.com:19302",
-                "stun:global.stun.twilio.com:3478",
-              ],
-            },
-          ],
+          iceServers: iceServers.data.v.iceServers,
         });
         setLobby(false);
         setReceivingPc(pc);
