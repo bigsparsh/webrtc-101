@@ -34,22 +34,37 @@ const Room = ({
     ws.onmessage = async (data) => {
       const message = JSON.parse(data.data);
 
-      const config = {
-        method: "put",
-        maxBodyLength: Infinity,
-        url: "https://bigsparsh:60dd4964-6522-11ef-8a32-0242ac150002@global.xirsys.net/_turn/MyFirstApp",
-        headers: {
-          "Content-type": "application/json",
-        },
-        data: JSON.stringify({
-          format: "urls",
-        }),
-      };
+      // const config = {
+      //   method: "put",
+      //   maxBodyLength: Infinity,
+      //   url: "https://bigsparsh:60dd4964-6522-11ef-8a32-0242ac150002@global.xirsys.net/_turn/MyFirstApp",
+      //   headers: {
+      //     "Content-type": "application/json",
+      //   },
+      //   data: JSON.stringify({
+      //     format: "urls",
+      //   }),
+      // };
 
       if (message.type === "send-offer") {
-        const iceServers = await axios.request(config);
+        // const iceServers = await axios.request(config);
         const pc = new RTCPeerConnection({
-          iceServers: iceServers.data.v.iceServers,
+          iceServers: [
+            { urls: ["stun:bn-turn1.xirsys.com"] },
+            {
+              username:
+                "4FOE15FO72ggg9ybkHQXT2S67BXHjstk9wt_sIHdENr3tZtKoEFVe3Wu6J1A07fAAAAAAGbO-6hiaWdzcGFyc2g=",
+              credential: "2e5a47c0-6528-11ef-afbe-0242ac140004",
+              urls: [
+                "turn:bn-turn1.xirsys.com:80?transport=udp",
+                "turn:bn-turn1.xirsys.com:3478?transport=udp",
+                "turn:bn-turn1.xirsys.com:80?transport=tcp",
+                "turn:bn-turn1.xirsys.com:3478?transport=tcp",
+                "turns:bn-turn1.xirsys.com:443?transport=tcp",
+                "turns:bn-turn1.xirsys.com:5349?transport=tcp",
+              ],
+            },
+          ],
         });
         setLobby(false);
         setSendingPc(pc);
@@ -84,9 +99,24 @@ const Room = ({
           }
         };
       } else if (message.type === "createOffer") {
-        const iceServers = await axios.request(config);
+        // const iceServers = await axios.request(config);
         const pc = new RTCPeerConnection({
-          iceServers: iceServers.data.v.iceServers,
+          iceServers: [
+            { urls: ["stun:bn-turn1.xirsys.com"] },
+            {
+              username:
+                "4FOE15FO72ggg9ybkHQXT2S67BXHjstk9wt_sIHdENr3tZtKoEFVe3Wu6J1A07fAAAAAAGbO-6hiaWdzcGFyc2g=",
+              credential: "2e5a47c0-6528-11ef-afbe-0242ac140004",
+              urls: [
+                "turn:bn-turn1.xirsys.com:80?transport=udp",
+                "turn:bn-turn1.xirsys.com:3478?transport=udp",
+                "turn:bn-turn1.xirsys.com:80?transport=tcp",
+                "turn:bn-turn1.xirsys.com:3478?transport=tcp",
+                "turns:bn-turn1.xirsys.com:443?transport=tcp",
+                "turns:bn-turn1.xirsys.com:5349?transport=tcp",
+              ],
+            },
+          ],
         });
         setLobby(false);
         setReceivingPc(pc);
